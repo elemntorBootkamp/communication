@@ -6,7 +6,9 @@ const swaggerJsdoc = require('swagger-jsdoc');
 
 
 module.exports = {
-   
+   returnTrue:()=>{
+    return true;
+   },
     /**
  * @swagger
  * /users:
