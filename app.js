@@ -1,3 +1,4 @@
+
 const express = require('express');
 const bodyPasrer = require('body-parser');
 
@@ -10,7 +11,13 @@ const app = express();
 
 mongoose.set('strictQuery', true);
 
-const port = 3000;
+
+
+
+const swaggerUi = require('swagger-ui-express')
+const swaggerFile = require('./swagger_output.json')
+
+const port =3000 ;
 
 app.use(bodyPasrer.json());
 
@@ -19,6 +26,7 @@ app.use(bodyPasrer.json());
 const connectionParams = {
   useNewUrlParser: true,
 };
+
 
 mongoose.connect('mongodb://localhost:27017/communication', connectionParams)
   .then(() => {
@@ -29,6 +37,10 @@ mongoose.connect('mongodb://localhost:27017/communication', connectionParams)
   });
 
 app.use('/message', messageRouter);
+
+
+
+app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 app.listen(port, () => {
   console.log(`my app is listening on http://localhost:${port}`);
