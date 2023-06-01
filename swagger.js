@@ -1,7 +1,8 @@
+
 const swaggerAutogen = require('swagger-autogen')()
 
 const outputFile = './swagger_output.json'
-<<<<<<< Updated upstream
+
 const endpointsFiles = ['./routs/message']
 
 const doc = {
@@ -38,8 +39,4 @@ const doc = {
 swaggerAutogen(outputFile, endpointsFiles,doc).then(() => {
     require('./app.js')
 })
-=======
-const endpointsFiles = ['./routs/message.js']
 
-swaggerAutogen(outputFile, endpointsFiles)
->>>>>>> Stashed changes

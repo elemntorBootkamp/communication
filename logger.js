@@ -38,3 +38,4 @@ const users = [
 logger.info(`Found ${users.length} users`);
 logger.warn('This is a warning message');
 logger.warn(chalk.yellow('This is another warning message'));
+
