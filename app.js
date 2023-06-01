@@ -1,12 +1,17 @@
-const express = require('express');
-const bodyPasrer = require('body-parser');
-const dotenv = require('dotenv');
-const messageRouter = require('./routs/message');
-const app = express();
-const mongoose = require('mongoose');
-mongoose.set('strictQuery', true);
 
-const port = 3000;
+const express = require('express')
+const bodyPasrer = require('body-parser')
+const dotenv = require('dotenv')
+const messageRouter=require('./routs/message')
+const app = express()
+const mongoose = require('mongoose')
+mongoose.set('strictQuery', true)
+
+
+const swaggerUi = require('swagger-ui-express')
+const swaggerFile = require('./swagger_output.json')
+
+const port =3000 ;
 
 app.use(bodyPasrer.json());
 
@@ -32,9 +37,12 @@ mongoose.connect(process.env.DB_CONNECTION, connectionParams)
     })
     .catch((error) => {
         console.log(`error: ${error}`);
-    });
 
 app.use('/message', messageRouter);
+
+
+
+app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 app.listen(port, () => {
     console.log(`my app is listening on http://localhost:${port}`);
