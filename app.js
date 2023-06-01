@@ -4,7 +4,12 @@ const dotenv = require('dotenv')
 const messageRouter=require('./routs/message')
 const app = express()
 const mongoose = require('mongoose')
+<<<<<<< Updated upstream
 mongoose.set('strictQuery', true)
+=======
+const swaggerUi = require('swagger-ui-express')
+const swaggerFile = require('./swagger_output.json')
+>>>>>>> Stashed changes
 
 const swaggerUi = require('swagger-ui-express')
 const swaggerFile = require('./swagger_output.json')
@@ -38,11 +43,16 @@ mongoose.connect(process.env.DB_CONNECTION, connectionParams)
     .catch((error) => {
         console.log(`error: ${error}`);
     })
+<<<<<<< Updated upstream
 
 app.use('/message', messageRouter)
 
 app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
+=======
+>>>>>>> Stashed changes
 
+
+app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 app.listen(port, () => {
     console.log(`my app is listening on http://localhost:${port}`);
