@@ -1,15 +1,15 @@
-const express = require('express')
-const router = express.Router()
+const express = require('express');
+const router = express.Router();
 
 const {
     getAll,
     addMessage
-} = require('../controllers/message')
+} = require('../controllers/message');
 //const { checkAuth } = require('../middlewares')
 
 
-router.get('/', getAll)
-router.post('/',addMessage)
+router.get('/', getAll);
+router.post('/', addMessage);
 
 
-module.exports = router
+module.exports = router;
