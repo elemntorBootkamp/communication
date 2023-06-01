@@ -1,18 +1,16 @@
-const express = require('express')
-const bodyPasrer = require('body-parser')
-const dotenv = require('dotenv')
-const messageRouter=require('./routs/message')
-const app = express()
-const mongoose = require('mongoose')
-mongoose.set('strictQuery', true)
+const express = require('express');
+const bodyPasrer = require('body-parser');
+const dotenv = require('dotenv');
+const messageRouter = require('./routs/message');
+const app = express();
+const mongoose = require('mongoose');
+mongoose.set('strictQuery', true);
 
 const port = 3000;
 
-app.use(bodyPasrer.json())
+app.use(bodyPasrer.json());
 
-dotenv.config()
-
-
+dotenv.config();
 
 // app.use((req, res, next) => {
 //     //origin, headers, methods
@@ -34,10 +32,10 @@ mongoose.connect(process.env.DB_CONNECTION, connectionParams)
     })
     .catch((error) => {
         console.log(`error: ${error}`);
-    })
+    });
 
-app.use('/message', messageRouter)
+app.use('/message', messageRouter);
 
 app.listen(port, () => {
     console.log(`my app is listening on http://localhost:${port}`);
-})
+});
