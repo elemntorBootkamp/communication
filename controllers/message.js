@@ -5,24 +5,24 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
 
 
+const Message = require("../models/message")
+
 module.exports = {
-   returnTrue:()=>{
-    return true;
-   },
-    /**
- * @swagger
- * /users:
- *   get:
- *     description: Get all users
- *     responses:
- *       200:
- *         description: Returns all message
- */
+   
    getAll: (req, res) => {
-       messageServ.getAll().then((messages)=>{res.status(200).send({messages})})
-       .catch((error)=> {res.status(404).send({message:error.message})})
-       // User.find().populate({ path: 'articles', select: 'title description content' })
-       //     .then((users) => { res.status(200).send({ users }) })
-       //     .catch((error) => { res.status(404).send({ message: error.message }) })
-   }
+      Message.find()
+      .then((message) => { res.status(200).send({ message }) })
+      .catch((error) => { res.status(404).send({ message: error.message }) })
+},
+
+addMessage: async(req,res)=> {
+   const message= await new Message(req.body);
+     try{
+         await message.save()
+         res.status(200).send(message)
+     }
+     catch(err){
+         res.status(404).send(err)
+     }
+   }       
 }
