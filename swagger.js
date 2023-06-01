@@ -36,7 +36,9 @@ const doc = {
     }
 }
 
+
 swaggerAutogen(outputFile, endpointsFiles,doc).then(() => {
     require('./app.js')
 })
+
 
