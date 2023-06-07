@@ -1,10 +1,10 @@
 const express = require('express');
-const bodyPasrer = require('body-parser');
+const bodyParser = require('body-parser');
 
 // const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 
-const messageRouter = require('./routs/message');
+// const messageRouter = require('./routs/message');
 
 const app = express();
 
@@ -16,7 +16,7 @@ const swaggerFile = require('./swagger_output.json');
 
 const port = 3000;
 
-app.use(bodyPasrer.json());
+app.use(bodyParser.json());
 
 // dotenv.config();
 
@@ -32,7 +32,10 @@ mongoose.connect('mongodb://localhost:27017/communication', connectionParams)
     console.log(`error: ${error}`);
   });
 
-app.use('/message', messageRouter);
+// eslint-disable-next-line import/no-unresolved, import/extensions, import/no-useless-path-segments
+require('./routs/message')(app);
+
+// app.use('/message', messageRouter);
 
 app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 

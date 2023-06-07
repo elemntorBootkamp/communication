@@ -1,15 +1,11 @@
-const express = require('express');
-
-const router = express.Router();
-
 const {
   getAll,
   addMessage,
 } = require('../controllers/message');
 
 // const { checkAuth } = require('../middlewares')
-
-router.get('/', getAll);
-router.post('/', addMessage);
-
-module.exports = router;
+// eslint-disable-next-line func-names
+module.exports = function (router) {
+  router.get('/', getAll);
+  router.post('/', addMessage);
+};

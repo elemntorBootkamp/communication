@@ -1,4 +1,4 @@
-const swaggerAutogen = require('swagger-autogen')();
+const swaggerAutogen = require('swagger-autogen');
 
 const outputFile = './swagger_output.json';
 
@@ -27,7 +27,7 @@ const doc = {
       title: 'aaa',
       content: 'bbb',
     },
-    AddUser: {
+    AddMessage: {
       $userId: 1,
       $title: 'aaa',
       $content: 'bbb',
@@ -37,5 +37,5 @@ const doc = {
 
 swaggerAutogen(outputFile, endpointsFiles, doc).then(() => {
   // eslint-disable-next-line global-require, import/extensions
-  require('./app.js');
+  require('./app');
 });
