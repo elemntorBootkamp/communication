@@ -26,6 +26,9 @@
   "paths": {
     "/": {
       "get": {
+        "tags": [
+          "Message"
+        ],
         "description": "",
         "parameters": [],
         "responses": {
@@ -38,9 +41,28 @@
         }
       },
       "post": {
+        "tags": [
+          "Message"
+        ],
         "description": "",
-        "parameters": [],
-        "responses": {}
+        "parameters": [
+          {
+            "name": "message",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddMessage"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
       }
     }
   },
@@ -62,7 +84,7 @@
         }
       }
     },
-    "AddUser": {
+    "AddMessage": {
       "type": "object",
       "properties": {
         "userId": {
