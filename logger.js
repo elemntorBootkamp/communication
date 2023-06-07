@@ -49,7 +49,6 @@ module.exports = logger;
 
 try {
   1000/0
-  // your1000 code that may throw an error
 } catch (error) {
   logger.error(error);
 }
@@ -59,24 +58,3 @@ module.exports = logger;
 
 
 
-// const winston = require('winston');
-// const chalk = require('chalk');
-
-// const logger = winston.createLogger({
-//   level: 'info',
-//   format: winston.format.combine(
-//     winston.format.timestamp(),
-//     winston.format.printf(info => {
-//       const { level, message, timestamp } = info;
-//       const coloredMessage = level === 'warn' ? chalk.yellow(message) : message;
-//       return `${timestamp} [${level}]: ${coloredMessage}`;
-//     })
-//   ),
-//   transports: [
-//     new winston.transports.File({
-//       filename: 'log.log'
-//     })
-//   ]
-// });
-
-// module.exports = logger;
