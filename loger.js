@@ -13,26 +13,24 @@ const logger = winston.createLogger({
     new winston.transports.Console({
       format: winston.format().combine(
         winston.format.colorize(),
-        winston.format.printf(info => {
+        winston.format.printf((info) => {
           const { level, message, timestamp } = info;
           const coloredMessage = level === 'warn' ? chalk.yellow(message) : message;
           return `${timestamp} [${level}]: ${coloredMessage}`;
         }),
       ),
     }),
-    //קובץ
+    // 'קובץ'
     new winston.transports.File({
 
-      filename: 'log.log', 
-      format: winston.format().combine(
-        winston.format.printf,(info => {
-          const { level, message, timestamp ,} = info;
-          const coloredMessage = level === 'warn' ? chalk.yellow(message) : message;
-          return `${timestamp} [${level}]: ${coloredMessage}`;
-        }),
-      ),
+      filename: 'log.log',
+      format: winston.format().combine(winston.format.printf, ((info) => {
+        const { level, message, timestamp } = info;
+        const coloredMessage = level === 'warn' ? chalk.yellow(message) : message;
+        return `${timestamp} [${level}]: ${coloredMessage}`;
+      })),
     }),
   ],
 });
 
-logger.info("hi logger");
+logger.info('hi logger');
