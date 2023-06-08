@@ -1,6 +1,5 @@
-// eslint-disable-next-line import/no-unresolved
 const winston = require('winston');
-// eslint-disable-next-line import/no-extraneous-dependencies
+
 const chalk = require('chalk');
 
 const logger = winston.createLogger({
@@ -9,22 +8,25 @@ const logger = winston.createLogger({
     winston.format.timestamp(),
     winston.format.json(),
   ),
+  // 'קונסול'
   transports: [
     new winston.transports.Console({
-      format: winston.format.combine(
+      format: winston.format().combine(
         winston.format.colorize(),
-        winston.format.printf((info) => {
+        winston.format.printf(info => {
           const { level, message, timestamp } = info;
           const coloredMessage = level === 'warn' ? chalk.yellow(message) : message;
           return `${timestamp} [${level}]: ${coloredMessage}`;
         }),
       ),
     }),
+    //קובץ
     new winston.transports.File({
-      filename: 'logfile.log',
-      format: winston.format.combine(
-        winston.format.printf((info) => {
-          const { level, message, timestamp } = info;
+
+      filename: 'log.log', 
+      format: winston.format().combine(
+        winston.format.printf,(info => {
+          const { level, message, timestamp ,} = info;
           const coloredMessage = level === 'warn' ? chalk.yellow(message) : message;
           return `${timestamp} [${level}]: ${coloredMessage}`;
         }),
@@ -32,12 +34,5 @@ const logger = winston.createLogger({
     }),
   ],
 });
-logger.info('Starting the application...');
-const users = [
-  { id: 1, name: 'John Doe' },
-  { id: 2, name: 'Jane Doe' },
-  { id: 3, name: 'Bob Smith' },
-];
-logger.info(`Found ${users.length} users`);
-logger.warn('This is a warning message');
-logger.warn(chalk.yellow('This is another warning message'));
+
+logger.info("hi logger");
