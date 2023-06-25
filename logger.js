@@ -1,7 +1,5 @@
-// eslint-disable-next-line import/no-unresolved
-const winston = require('winston');
-// eslint-disable-next-line import/no-extraneous-dependencies
-const chalk = require('chalk');
+import winston from 'winston';
+import chalk from 'chalk';
 
 const logger = winston.createLogger({
   level: 'info',
@@ -41,3 +39,4 @@ const users = [
 logger.info(`Found ${users.length} users`);
 logger.warn('This is a warning message');
 logger.warn(chalk.yellow('This is another warning message'));
+export default logger;

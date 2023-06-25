@@ -1,18 +1,17 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-
+import express from 'express';
+import bodyParser from 'body-parser';
 // const dotenv = require('dotenv');
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
+import swaggerUi from 'swagger-ui-express';
+import { readFileSync } from 'fs';
+import logger from './logger.js';
+import messageRoutes from './routes/message.js';
 
 // const messageRouter = require('./routs/message');
-
+const swaggerFile = JSON.parse(readFileSync('./swagger_output.json'));
 const app = express();
 
 mongoose.set('strictQuery', true);
-
-// eslint-disable-next-line import/order
-const swaggerUi = require('swagger-ui-express');
-const swaggerFile = require('./swagger_output.json');
 
 const port = 3000;
 
@@ -26,19 +25,20 @@ const connectionParams = {
 
 mongoose.connect('mongodb://localhost:27017/communication', connectionParams)
   .then(() => {
-    console.log('connect to mongoDB');
+    logger.info('connect to mongoDB');
   })
   .catch((error) => {
-    console.log(`error: ${error}`);
+    logger.info(`error: ${error}`);
   });
 
-// eslint-disable-next-line import/no-unresolved, import/extensions, import/no-useless-path-segments
-require('./routs/message')(app);
+// router(app);
+app.use(messageRoutes);
 
 // app.use('/message', messageRouter);
 
 app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 app.listen(port, () => {
-  console.log(`my app is listening on http://localhost:${port}`);
+  logger.info(`my app is listening on http://localhost:${port}`);
 });
+export default app;

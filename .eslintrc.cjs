@@ -23,5 +23,12 @@ module.exports = {
       'error',
       'always',
     ],
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        js: 'always',
+      },
+    ],
   },
 };
