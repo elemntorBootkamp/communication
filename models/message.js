@@ -1,9 +1,7 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const messageSchema = new mongoose.Schema({
-  // _id: mongoose.Schema.Types.ObjectId,
   userId: {
-    // type: mongoose.Schema.Types.ObjectId,
     type: Number,
     require: true,
   },
@@ -18,4 +16,4 @@ const messageSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('Message', messageSchema);
+export default mongoose.model('Message', messageSchema);
